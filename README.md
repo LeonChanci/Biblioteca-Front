@@ -25,3 +25,19 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## PROYECTO Biblioteca
+Desarrollar una solución web que le facilite mejor control sobre los datos para clientes y los libros que estos prestan guardando la información en base de datos.
+Información sobre el clientes (Cedula, Nombres, Apellidos, Dirección, Teléfono)
+Información sobre los libros (Nombre, Descripcion, Autor, Año Publicación)
+Información sobre libros que clientes prestan (Libro, Cliente, fecha inicio, fecha final)
+
+Se requiere:
+Crear CRUD sobre la información referenciada anteriormente.
+Desarrollar un reporte sobre clientes y libros.
+Aprendizaje independiente.
+
+## Info
+Proyecto by Politecnico Colimbiano Jaime Isaza Cadavid
+Signature: PROGRAMACIÓN DISTRIBUIDA Y PARALELA
+Teacher: Hernando Recaman Chaux
