@@ -1,0 +1,136 @@
+<div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="title">Libros
+          <button 
+            type="button" 
+            class="btn btn-outline-success"
+            data-bs-toggle="modal" 
+            data-bs-target="#libroModal"
+            (click)="newLibro(false)"
+          >Nuevo Libro</button>
+        </h1>
+        <p>Información de los Libros</p>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table table-hover">
+        @if(libroList$; as libroList) {
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Categoría</th>
+            <th>Autor</th>
+            <th>Año</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        @for(libro of libroList; track libro.idLibro) {
+          <tr>
+            <td>{{ libro.idLibro }}</td>
+            <td>{{ libro.nombre }}</td>
+            <td>{{ libro.descripcion }}</td>
+            <td>{{ libro.categoria }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.ano }}</td>
+            <td>
+              <p class="d-inline-flex gap-1">
+                <button (click)="getLibro(libro.idLibro)" class="btn btn-outline-success" type="button" 
+                  data-bs-toggle="modal" 
+                  data-bs-target="#libroModal"
+                >Edit</button>
+                <button (click)="deletLibro(libro.idLibro)" class="btn btn-outline-danger" type="button"
+                >Trash</button>
+              </p>
+            </td>
+          </tr>
+        }
+        </tbody>
+      }
+      </table>
+    </div>
+  </div>
+</div>
+
+<div>
+  <!-- Modal -->
+  <div class="modal fade" id="libroModal" tabindex="-1" aria-labelledby="libroModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          @if (isEditBook) {
+            <h1 class="modal-title fs-5" id="libroModalLabel">Modificar Información</h1>
+          } @else {
+            <h1 class="modal-title fs-5" id="libroModalLabel">Agregar Libro</h1>
+          }
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formLibro" [formGroup]="formGroupLibro">
+            <div class="row">
+              @if (isEditBook) {
+                <div class="col-2">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="idLibro" 
+                    [formControl]="idLibro">
+                  </div>
+                </div>
+              }
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="nombre" 
+                  [formControl]="nombre" placeholder="Nombre">
+                  <label for="nombre">Nombre</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="categoria" 
+                  [formControl]="categoria" placeholder="Categoría">
+                  <label for="categoria">Categoría</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="descripcion" 
+                  [formControl]="descripcion" placeholder="Descripción">
+                  <label for="descripcion">Descripción</label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="autor" 
+                  [formControl]="autor" placeholder="Autor">
+                  <label for="autor">Autor</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="ano"
+                  [formControl]="ano" placeholder="Año" maxlength="4" minlength="4">
+                  <label for="ano">Año</label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          @if (isEditBook) {
+            <button (click)="editLibro()" type="submit" data-bs-dismiss="modal" class="btn btn-outline-success">Guardar</button>
+          } @else {
+            <button (click)="saveLibro()" id="save" type="submit" data-bs-dismiss="modal" class="btn btn-outline-success">Crear</button>
+          }
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
