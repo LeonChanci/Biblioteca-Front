@@ -47,7 +47,6 @@ export class ClienteListComponent implements OnInit {
     try {
       this.clienteService.getClienteList().subscribe({
         next: (response) => {
-          console.log(response);
           this.clienteList$ = response;
         },
       });
@@ -75,7 +74,6 @@ export class ClienteListComponent implements OnInit {
         next: (response) => {
           if(response){
             this.limpiarCampos();
-            console.log(response);
             window.location.reload();
           }
         }
@@ -100,7 +98,6 @@ export class ClienteListComponent implements OnInit {
       this.clienteService.getCliente(idCliente).subscribe({
         next: (response) => {
           if(response){
-            console.log(response);
             this.editClient = response;
             this.identificacion.setValue(this.editClient.idCliente);
             this.nombres.setValue(this.editClient.nombres);
@@ -129,7 +126,6 @@ export class ClienteListComponent implements OnInit {
       this.clienteService.editCliente(editClient).subscribe ({
         next: (response) => {
           if(response){
-            console.log(response);
             window.location.reload();
           }
         }
@@ -145,7 +141,6 @@ export class ClienteListComponent implements OnInit {
         next: (response) => {
           window.location.reload();
           if(response){
-            console.log(response);
             window.location.reload();
           }
         },

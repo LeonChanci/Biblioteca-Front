@@ -16,3 +16,23 @@ body {
 .btn-outline-success:hover {
     background:#055f60!important;
 }
+
+/*
+.card {
+    width: 18rem;
+    margin: 1rem;
+    text-align: center;
+}*/
+
+.card {
+    max-width: 600px;
+    margin: 1rem;
+}
+
+.container-book {
+    margin-top: 3rem;
+}
+
+.img-book {
+    margin: 0.5rem;
+}

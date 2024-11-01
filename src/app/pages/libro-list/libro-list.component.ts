@@ -47,7 +47,6 @@ export class LibroListComponent implements OnInit {
     try {
       this.libroService.getLibroList().subscribe({
         next: (response) => {
-          console.log(response);
           this.libroList$ = response;
         },
       });
@@ -75,7 +74,6 @@ export class LibroListComponent implements OnInit {
         next: (response) => {
           if(response){
             this.limpiarCampos();
-            console.log(response);
             window.location.reload();
           }
         }
@@ -100,7 +98,6 @@ export class LibroListComponent implements OnInit {
       this.libroService.getLibro(idLibro).subscribe({
         next: (response) => {
           if(response){
-            console.log(response);
             this.editBook = response;
             this.idLibro.setValue(this.editBook.idLibro);
             this.nombre.setValue(this.editBook.nombre);
@@ -126,10 +123,9 @@ export class LibroListComponent implements OnInit {
       'ano': this.ano.value
     };
     try {
-      this.libroService.editLibro(editLibro).subscribe ({
+      this.libroService.editLibro(editLibro).subscribe({
         next: (response) => {
           if(response){
-            console.log(response);
             window.location.reload();
           }
         }
@@ -145,7 +141,6 @@ export class LibroListComponent implements OnInit {
         next: (response) => {
           window.location.reload();
           if(response){
-            console.log(response);
             window.location.reload();
           }
         },

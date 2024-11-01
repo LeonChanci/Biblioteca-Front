@@ -1,0 +1,130 @@
+<div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1 class="title">Prestamos
+          <button 
+            type="button" 
+            class="btn btn-outline-success"
+            data-bs-toggle="modal" 
+            data-bs-target="#prestamoModal"
+            (click)="newPrestamo(false)"
+          >Nuevo Prestamo</button>
+        </h1>
+        <p>Información de los Prestamos</p>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table table-hover">
+        @if(prestamoSumaryList$; as prestamoSummaryList) {
+        <thead>
+          <tr>
+            <th>CC Cliente</th>
+            <th>Nombres</th>
+            <th>Edad</th>
+            <th>Telefono</th>
+            <th>Libro Prestado</th>
+            <th>Fecha Inicio Prestamo</th>
+            <th>Fecha Fin Prestamo</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        @for(prestamoSummary of prestamoSummaryList; track prestamoSummary.idPrestamo) {
+          <tr>
+            <td>{{ prestamoSummary.idCliente }}</td>
+            <td>{{ prestamoSummary.nombres }} {{ prestamoSummary.apellidos }}</td>
+            <td>{{ prestamoSummary.edad }}</td>
+            <td>{{ prestamoSummary.telefono }}</td>
+            <td>{{ prestamoSummary.nombre }}</td>
+            <td>{{ prestamoSummary.fechaInicio }}</td>
+            <td>{{ prestamoSummary.fechaFin }}</td>
+          </tr>
+        }
+        </tbody>
+      }
+      </table>
+    </div>
+  </div>
+</div>
+
+<div>
+  <!-- Modal -->
+  <div class="modal fade" id="prestamoModal" tabindex="-1" aria-labelledby="prestamoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          @if (isEditLoan) {
+            <h1 class="modal-title fs-5" id="prestamoModalLabel">Modificar Información</h1>
+          } @else {
+            <h1 class="modal-title fs-5" id="prestamoModalLabel">Nuevo Prestamo</h1>
+          }
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formPrestamo" [formGroup]="formGroupPrestamo">
+            <div class="row">
+              @if (!isEditLoan) {
+                <div class="col">
+                  <div class="form-floating mb-3">
+                    <select class="form-select" aria-label="Default select example"
+                      [formControl]="idCliente" formControlName="idCliente">
+                      <option selected value='0'>Seleccionar Cliente</option>
+                      @if(clienteList$; as clienteList) {                       
+                        @for(cliente of clienteList; track cliente.idCliente) {
+                          <option value={{cliente.idCliente}}>
+                            {{cliente.idCliente}} - {{ cliente.nombres }} {{ cliente.apellidos }}
+                          </option>
+                        }
+                      }
+                    </select>
+                  </div>
+                </div>
+              }
+              @if (!isEditLoan) {
+                <div class="col">
+                  <div class="form-floating mb-3">
+                    <select class="form-select" aria-label="Default select example"
+                      [formControl]="idLibro" formControlName="idLibro">
+                      <option selected value='0'>Seleccionar Libro</option>
+                      @if(libroList$; as libroList) {                       
+                        @for(libro of libroList; track libro.idLibro) {
+                          <option value={{libro.idLibro}}>
+                            {{libro.nombre}} - {{ libro.ano }}
+                          </option>
+                        }
+                      }
+                    </select>
+                  </div>
+                </div>
+              }
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="fechaInicio" 
+                  [formControl]="fechaInicio" placeholder="Fecha Inicio Prestamo">
+                  <label for="fechaInicio">Fecha Inicio Prestamo</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="fechaFin" 
+                  [formControl]="fechaFin" placeholder="Fecha Fin Prestamo">
+                  <label for="fechaFin">Fecha Fin Prestamo</label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          @if (isEditLoan) {
+            <button (click)="editPrestamo()" type="submit" data-bs-dismiss="modal" class="btn btn-outline-success">Guardar</button>
+          } @else {
+            <button (click)="savePrestamo()" id="save" type="submit" data-bs-dismiss="modal" class="btn btn-outline-success">Crear</button>
+          }
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

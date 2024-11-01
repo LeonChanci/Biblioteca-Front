@@ -1,5 +1,5 @@
-<div>
-  <div class="container">
+<div class="container-book">
+  <!--<div class="container">
     <div class="row">
       <div class="col">
         <h1 class="title">Libros
@@ -52,6 +52,62 @@
         </tbody>
       }
       </table>
+    </div>
+  </div>-->
+  <div class="container">
+    <div class="row">
+      @if(libroList$; as libroList) {
+        @for(libro of libroList; track libro.idLibro) {
+          <!--<div class="card">
+            <img src="https://png.pngtree.com/png-vector/20240414/ourlarge/pngtree-a-book-with-red-leather-cover-an-old-png-image_12288161.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{ libro.nombre }}</h5>
+              <p class="card-text">{{ libro.descripcion }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ libro.categoria }}</li>
+              <li class="list-group-item">{{ libro.autor }}</li>
+              <li class="list-group-item">{{ libro.ano }}</li>
+            </ul>
+            <div class="card-body">
+              <button (click)="getLibro(libro.idLibro)" class="btn btn-outline-success" type="button" 
+              data-bs-toggle="modal" 
+              data-bs-target="#libroModal"
+              >Edit</button>
+            
+              <button (click)="deletLibro(libro.idLibro)" class="btn btn-outline-danger" type="button"
+              >Trash</button>
+            </div>
+          </div>-->
+
+          <div class="card">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="https://png.pngtree.com/png-vector/20240414/ourlarge/pngtree-a-book-with-red-leather-cover-an-old-png-image_12288161.png" alt="..."
+                width="100%" height="250" class="img-book">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ libro.nombre }}</h5>
+                  
+                  <p class="card-text">{{ libro.descripcion }}</p>
+                  <p class="card-text">{{ libro.autor }} - {{ libro.ano }}</p>
+                  <p class="card-text">{{ libro.categoria }}</p>
+                  <div class="d-flex gap-2 justify-content-end">
+                    <button (click)="getLibro(libro.idLibro)" class="btn btn-outline-success" type="button" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#libroModal"
+                    >Edit</button>
+                  
+                    <button (click)="deletLibro(libro.idLibro)" class="btn btn-outline-danger" type="button"
+                    >Trash</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      }
     </div>
   </div>
 </div>
