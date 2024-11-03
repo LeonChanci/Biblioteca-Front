@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Prestamo } from '../interfaces/prestamo';
-import { environment } from '../../environments/environment';
 import { PrestamoSummary } from '../interfaces/PrestamoSummary';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
