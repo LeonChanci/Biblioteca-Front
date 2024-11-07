@@ -1,0 +1,28 @@
+<div class="container-book">
+  <div class="container">
+    <h1 class="title">Libros XML</h1>
+    <div class="row">
+      @if(libroXmlList$; as libroXmlList) {
+        @for(libroXml of libroXmlList; track libroXml.idLibro) {
+         <div class="card">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="https://png.pngtree.com/png-vector/20240414/ourlarge/pngtree-a-book-with-red-leather-cover-an-old-png-image_12288161.png" alt="..."
+                width="100%" height="250" class="img-book">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ libroXml.nombre }}</h5>
+                  <p class="card-text">{{ libroXml.descripcion }}</p>
+                  <p class="card-text"><b>Autor(es):</b> {{ libroXml.autor }}</p>
+                  <p class="card-text"><b>Año publicación:</b> {{ libroXml.ano }}</p>
+                  <p class="card-text"><b>Categoria(s):</b> {{ libroXml.categoria }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      }
+    </div>
+  </div>
+</div>
