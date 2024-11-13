@@ -55,7 +55,20 @@
     </div>
   </div>-->
   <div class="container">
-    <h1 class="title">Libros</h1>
+    <div class="row">
+      <div class="col">
+        <h1 class="title">Libros
+          <button 
+            type="button" 
+            class="btn btn-outline-success"
+            data-bs-toggle="modal" 
+            data-bs-target="#libroModal"
+            (click)="newLibro(false)"
+          >Nuevo Libro</button>
+        </h1>
+        <p>Información de los Libros</p>
+      </div>
+    </div>
     <div class="row">
       @if(libroList$; as libroList) {
         @for(libro of libroList; track libro.idLibro) {
@@ -93,7 +106,7 @@
                   
                   <p class="card-text">{{ libro.descripcion }}</p>
                   <p class="card-text">{{ libro.autor }} - {{ libro.ano }}</p>
-                  <p class="card-text">{{ libro.categoria }}</p>
+                  <span class="badge text-bg-warning">{{ libro.categoria }}</span>
                   <div class="d-flex gap-2 justify-content-end">
                     <button (click)="getLibro(libro.idLibro)" class="btn btn-outline-success" type="button" 
                     data-bs-toggle="modal" 
