@@ -27,14 +27,14 @@
       <div class="col-md-6">
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center">
-            Total de libros con mas de dos Categorías:
-            <span class="badge text-bg-primary rounded-pill">@if (total) {
+            Total de libros con mas de dos Categorías
+            <span class="badge text-bg-danger">@if (total) {
               {{ total }}
             }</span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             Porcentaje de libros publicados luego del año 2000
-            <span class="badge text-bg-primary rounded-pill">@if (percetage) {
+            <span class="badge text-bg-success">@if (percetage) {
               {{ percetage }} %
             }</span>
           </li>
@@ -42,6 +42,12 @@
       </div>
     </div>
     <hr>
+    
+    @if (isSearchBooks) {
+      <h4>Filtro de busqueda: </h4>
+      Año publicación: 
+      <span class="badge text-bg-success rounded-pill">{{ viewAno }}</span> 
+    }
     <div class="row">
       @if(libroXmlList$; as libroXmlList) {
         @for(libroXml of libroXmlList; track libroXml.idLibro) {
@@ -56,8 +62,8 @@
                   <h5 class="card-title">{{ libroXml.nombre }}</h5>
                   <p class="card-text">{{ libroXml.descripcion }}</p>
                   <p class="card-text"><b>Autor(es):</b> {{ libroXml.autor }}</p>
-                  <p class="card-text"><b>Año publicación:</b> {{ libroXml.ano }}</p>
-                  <p class="card-text"><b>Categoria(s): </b> <span class="badge text-bg-warning">{{ libroXml.categoria }}</span></p>
+                  <p class="card-text"><b>Año publicación: </b><span class="badge rounded-pill text-bg-success">{{ libroXml.ano }}</span></p>
+                  <p class="card-text"><b>Categoria(s): </b><span class="badge text-bg-warning">{{ libroXml.categoria }}</span></p>
                 </div>
               </div>
             </div>

@@ -18,10 +18,11 @@ export class LibroXmlListComponent implements OnInit {
   public libroXmlList$!: LibroXml[];
   public total!: number;
   public percetage!: number;
+  public viewAno!: number;
 
   anoBusqueda = new FormControl('');
-
-  isEditBook= false;
+  
+  isSearchBooks= false;
 
   ngOnInit(): void {
     this.getListLibros();
@@ -64,6 +65,12 @@ export class LibroXmlListComponent implements OnInit {
       this.libroXmlService.getLibrosXmlByFilter(Number(this.anoBusqueda.value)).subscribe({
         next: (response) => {
           console.log(response);
+          this.viewAno = Number(this.anoBusqueda.value);
+          if (this.viewAno != 0 && this.viewAno > 1500 && this.viewAno < 2025) {
+            this.isSearchBooks = true;
+          }else {
+            this.isSearchBooks = false;
+          }
           this.libroXmlList$ = response;
         },
       });
